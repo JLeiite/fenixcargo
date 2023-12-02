@@ -7,6 +7,7 @@ O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEI
   <summary><b>Executivo/Operacional</b></summary>
   <br>
   Esse módulo é direcionado aos funcionários da empresa, sendo responsável pelo gerenciamento dos dados em sistema. Dividido em:
+  
   - Cadastros: clientes, agentes, usuários, funcionários, serviços
   - Guarda Volume
   - Tabela
@@ -19,17 +20,21 @@ O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEI
 
 <details>
   <summary><b>Clientes</b></summary>
+  <br>
   Esse módulo é direcionado aos clientes da empresa. Além de visualizar os dados associados a eles, os clientes também podem enviar solicitações pelo sistema. Dividido em:
-    - Meus volumes (visualizar itens do guarda volume)
-    - Cotação (envio de cotação)
-    - Minuta (emissão e acompanhamento)
-    - Fatura (pagamento online, extrato de pendencias e pagamentos)
-    - Dados cadastrais (editar endereço, email, telefone)
+
+  - Meus volumes (visualizar itens do guarda volume)
+  - Cotação (envio de cotação)
+  - Minuta (emissão e acompanhamento)
+  - Fatura (pagamento online, extrato de pendencias e pagamentos)
+  - Dados cadastrais (editar endereço, email, telefone)
 </details>
 
 <details>
   <summary><b>Parceiros</b></summary>
+  <br>
   Esse módulo é direcionado para funcionários terceiros, como motoristas ou agentes para atualização do status da encomenda e acessarem seus relatórios de pagamento. Dividido em:
+  
   - Minhas minutas (atualizar minuta, acompanhamento do histórico)
   - Cobranças/Pagamentos (pagamentos recebidos e pendentes)
   - Dados cadastrais (editar endereço, email, telefone, tabela de preço e dados de pagamento)
@@ -84,14 +89,14 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - id_endereço_origem (pais, cep, estado, cidade)
   - id_endereço_destino (pais, cep, estado, cidade)
   - id_tarifas {
-        - id_tipoTarifa (taxaMinima, excedente, taxaFixaKg)
-        - id_moeda (real, dolar)
-        - valorFrete
-        - pesoInicial
-        - pesoFinal
-        - id_tipoPrazo (dias / horas)
-        - prazoMinimo
-        - prazoMaximo
+    - id_tipoTarifa (taxaMinima, excedente, taxaFixaKg)
+    - id_moeda (real, dolar)
+    - valorFrete
+    - pesoInicial
+    - pesoFinal
+    - id_tipoPrazo (dias / horas)
+    - prazoMinimo
+    - prazoMaximo
     }
 - taxas adicionais
   - descricao (Taxa interior, Seguro, Seguro Redespacho, Troca de gelo)
