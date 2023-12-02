@@ -1,27 +1,39 @@
 # FÊNIX CARGO
 Repositório de sistema TMS para a Fênix Cargo.
 
-O programa será dividido em 3 ambientes, sendo eles: operacional, cliente e stakeholders.
+O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEIROS.
 
-Em operacional deve conter:
-- Cadastros: clientes, agentes, usuários, funcionários, serviços
-- Guarda Volume
-- Tabela
-- Cotação/Simulação
-- Minuta
-- Fatura
-- Despesas (mensais, agentes)
-- Documentação (certidões, minutas de embarque, declarações) -> integração com Google Drive
+<details>
+  <summary><b>Executivo/Operacional</b></summary>
+  Esse módulo é direcionado aos funcionários da empresa, sendo responsável pelo gerenciamento dos dados em sistema. Dividido em:
+    - Cadastros: clientes, agentes, usuários, funcionários, serviços
+    - Guarda Volume
+    - Tabela
+    - Cotação/Simulação
+    - Minuta
+    - Fatura
+    - Despesas (mensais, agentes)
+    - Documentação (certidões, minutas de embarque, declarações) -> integração com Google Drive
+</details>
 
-Em cliente deve ter:
-- Meus volumes (Guarda volume)
-- Cotação
-- Minuta
-- Fatura
+<details>
+  <summary><b>Clientes</b></summary>
+  Esse módulo é direcionado aos clientes da empresa. Além de visualizar os dados associados a eles, os clientes também podem enviar solicitações pelo sistema. Dividido em:
+    - Meus volumes (visualizar itens do guarda volume)
+    - Cotação (envio de cotação)
+    - Minuta (emissão e acompanhamento)
+    - Fatura (pagamento online, extrato de pendencias e pagamentos)
+    - Dados cadastrais (editar endereço, email, telefone)
+</details>
 
-Em stakeholders deve ter:
-- Minhas minutas (Minuta)
-- Cobranças/Pagamentos
+<details>
+  <summary><b>Parceiros</b></summary>
+  Esse módulo é direcionado para funcionários terceiros, como motoristas ou agentes para atualização do status da encomenda e acessarem seus relatórios de pagamento. Dividido em:
+  - Minhas minutas (atualizar minuta, acompanhamento do histórico)
+  - Cobranças/Pagamentos (pagamentos recebidos e pendentes)
+  - Dados cadastrais (editar endereço, email, telefone, tabela de preço e dados de pagamento)
+</details>
+
 
 ## **OPERACIONAL**
 O banco de dados `tms` será criado para manipulação dos dados presentes em todos os ambientes.
@@ -59,12 +71,34 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - cpf/cnpj
   - rg/ie (RG só não obrigatório para cliente)
   - nome/razao social
-  - telefone / whatsapp
+  - id_telefone (telefone + respContato)
   - classificação (clientes, agentes, usuários, funcionários, serviços)
-  - id_endereço (pais, cep, estado, cidade, rua, numero, complemento, infoAdicionais)
+  - id_endereço (pais, cep, estado, cidade, bairro, rua, numero, complemento, infoAdicionais)
   - id_dadosBancarios (id_formaPagamento('PIX, transferencia, boleto'), codPIX, tipoPIX, id_codBanco('codBanco, nomeBanco'), agencia, conta)
 - guarda_volume
 - tabela
+  - id_tipoTabela (fenix, terceiros)
+  - id_categoriaTabela (urgente, comum, exclusivo)
+  - anexo
+  - id_endereço_origem (pais, cep, estado, cidade)
+  - id_endereço_destino (pais, cep, estado, cidade)
+  - id_tarifas {
+        - id_tipoTarifa (taxaMinima, excedente, taxaFixaKg)
+        - id_moeda (real, dolar)
+        - valorFrete
+        - pesoInicial
+        - pesoFinal
+        - id_tipoPrazo (dias / horas)
+        - prazoMinimo
+        - prazoMaximo
+    }
+- taxas adicionais
+  - descricao (Taxa interior, Seguro, Seguro Redespacho, Troca de gelo)
+  - id_moeda (real, dolar)
+  - valorTaxa
+  - alcanceGeografico
+  - condição/associado á: (valor NF, por km)
+  - incluso (SEMPRE, QUANDO SELECIONADO)
 - cotação
 - minuta
 - fatura
