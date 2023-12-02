@@ -6,10 +6,10 @@ O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEI
 <details>
   <summary><b>Executivo/Operacional</b></summary>
   Esse módulo é direcionado aos funcionários da empresa, sendo responsável pelo gerenciamento dos dados em sistema. Dividido em:
-    - Cadastros: clientes, agentes, usuários, funcionários, serviços
-    - Guarda Volume
-    - Tabela
-    - Cotação/Simulação
+  - Cadastros: clientes, agentes, usuários, funcionários, serviços
+  - Guarda Volume
+  - Tabela
+  - Cotação/Simulação
     - Minuta
     - Fatura
     - Despesas (mensais, agentes)
