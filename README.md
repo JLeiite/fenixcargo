@@ -113,7 +113,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
 </details>
 
 <details>
-<summary><b> Usuários </b></summary>
+<summary><b> Rotas </b></summary>
 
 #### `GET` `/categoria`
 
