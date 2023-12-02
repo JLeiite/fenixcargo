@@ -5,15 +5,16 @@ O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEI
 
 <details>
   <summary><b>Executivo/Operacional</b></summary>
+  <br>
   Esse módulo é direcionado aos funcionários da empresa, sendo responsável pelo gerenciamento dos dados em sistema. Dividido em:
   - Cadastros: clientes, agentes, usuários, funcionários, serviços
   - Guarda Volume
   - Tabela
   - Cotação/Simulação
-    - Minuta
-    - Fatura
-    - Despesas (mensais, agentes)
-    - Documentação (certidões, minutas de embarque, declarações) -> integração com Google Drive
+  - Minuta
+  - Fatura
+  - Despesas (mensais, agentes)
+  - Documentação (certidões, minutas de embarque, declarações) -> integração com Google Drive
 </details>
 
 <details>
