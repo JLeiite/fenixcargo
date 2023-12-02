@@ -1,6 +1,8 @@
 # FÊNIX CARGO
 Repositório de sistema TMS para a Fênix Cargo.
 
+Tempo decorrido: 1h30
+
 O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEIROS.
 
 <details>
