@@ -195,6 +195,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - anexo}
 - fatura
   - id_minuta
+  - id_statusFatura (aberto, pago, atrasado)
   - id_faturamento{
     - clientePagador
     - aprovadorFrete
@@ -205,11 +206,12 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - juros
     - multa}
   - id_banco
+  - dataVencimento
+  - dataEmissao
   - codigoBarrasBoleto
   - observacaoFatura
   - valorFatura
   - quantMinutas
-  - dataVencimento
   - numeroDocumento (nº CTE, nº NFS)
   - anexo (CTE / NFS)
 - despesas
