@@ -69,7 +69,6 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
 
 - usuarios
   - id
-  - email (campo único)
   - senha
   - id_perfilAcesso (Cliente, Parceiros, Operacional)
   - nivel de acesso (administrador, financeiro, comercial)
@@ -79,17 +78,38 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - cpf/cnpj
   - rg/ie (RG só não obrigatório para cliente)
   - nome/razao social
+  - email (campo único)
   - id_telefone (telefone + respContato)
-  - classificação (clientes, agentes, usuários, funcionários, serviços)
+  - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)
   - id_endereço (pais, cep, estado, cidade, bairro, rua, numero, complemento, infoAdicionais)
   - id_dadosBancarios (id_formaPagamento('PIX, transferencia, boleto'), codPIX, tipoPIX, id_codBanco('codBanco, nomeBanco'), agencia, conta)
 - guarda_volume
+  - id_cliente
+  - dataEntrada
+  - dataSaída
+  - id_enderecoOrigem
+  - id_minutaEntrada
+  - id_enderecoDestino
+  - id_minutaSaida
+  - valorNF
+  - id_item{
+    - descricaoItem (único)
+    - id_armazem (nome, id_endereço)
+    - posicaoItem
+    - quantidadeItem
+    - alturaItem
+    - larguraItem
+    - comprimentoItem
+    - cubagemItem
+    - pesoTotalItem
+    - pesoCubadoItem
+    - imagemAnexo}
 - tabela
   - id_tipoTabela (fenix, terceiros)
   - id_categoriaTabela (urgente, comum, exclusivo)
   - anexo
-  - id_endereço_origem (pais, cep, estado, cidade)
-  - id_endereço_destino (pais, cep, estado, cidade)
+  - id_localOrigem (pais, cep, estado, cidade)
+  - id_localDestino (pais, cep, estado, cidade)
   - id_tarifas {
     - id_tipoTarifa (taxaMinima, excedente, taxaFixaKg)
     - id_moeda (real, dolar)
@@ -108,8 +128,73 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - condição/associado á: (valor NF, por km)
   - incluso (SEMPRE, QUANDO SELECIONADO)
 - cotação
+  - id_clienteOrigem
+  - id_clienteDestino
+  - id_localOrigem (pais, cep, estado, cidade)
+  - id_localDestino (pais, cep, estado, cidade)
+  - tipoDocumento (NF, declaracao, CTE)
+  - valorProduto
+  - anexo
+  - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
+  - pesoTotal
+  - id_item{
+    - quantidadeItem
+    - alturaItem
+    - larguraItem
+    - comprimentoItem
+    - pesoCubadoItem}
+  - id_TarifaAdicional (muitos pra muitos)
+  - id_cotacaoFrete{
+    - id_categoriaFrete (urgente, comum, exclusivo)
+    - taxaMinima
+    - taxaFixa
+    - excedente
+    - seguro
+    - distanciaCapital
+    - taxaInterior
+    - valorFinal}
 - minuta
+  - id_clienteOrigem
+  - id_clienteDestino
+  - id_endereçoOrigem
+  - id_endereçoDestino
+  - tipoDocumento (NF, declaracao, CTE)
+  - produto
+  - valorProduto
+  - anexo
+  - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
+  - pesoTotal
+  - id_item{
+    - quantidadeItem
+    - alturaItem
+    - larguraItem
+    - comprimentoItem
+    - pesoCubadoItem}
+  - id_faturamento{
+    - clientePagador
+    - aprovadorFrete
+    - valorFrete
+    - codCotacao}
+  - id_atualizarMinuta {
+    - id_statusMinuta (aguardando coleta, saiu para coleta, coleta efetuada, aguardando liberação, em trânsito, saiu pra entrega, entrega efetuada)
+    - data
+    - cidade
+    - nomeResponsavel
+    - id_tipoDocumento (RG, CPF)
+    - numeroDocumento
+    - anexo}
+  - id_associadoMinuta {
+    - id_pessoa {
+      - nome/razao social
+      - email (campo único)
+      - id_telefone (telefone + respContato)
+      - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)}
+    - numeroIdentificacao
+    - custo
+    - id_telefone
+    - anexo}
 - fatura
+  - id_minuta
 - despesas
 
 </details>
