@@ -46,21 +46,6 @@ O programa será dividido em 3 módulos, sendo eles EXECUTIVO, CLIENTES e PARCEI
 ## **OPERACIONAL**
 O banco de dados `tms` será criado para manipulação dos dados presentes em todos os ambientes.
 
-## **Status Codes**
-
-Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API.
-
-```javascript
-// 200 (OK) = requisição bem sucedida
-// 201 (Created) = requisição bem sucedida e algo foi criado
-// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
-// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
-// 401 (Unauthorized) = o usuário não está autenticado (logado)
-// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
-// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
-// 500 (Internal Server Error) = erro inesperado do servidor
-```
-
 <details>
 <summary><b>Banco de Dados</b></summary>
 <br>
@@ -69,28 +54,35 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
 
 - usuarios
   - id
+  - id_pessoas.email
   - senha
   - id_perfilAcesso (Cliente, Parceiros, Operacional)
-  - nivel de acesso (administrador, financeiro, comercial)
+  - id_nivelAcesso (administrador, financeiro, comercial)
 - pessoas (clientes, agentes, usuários, funcionários, serviços)
   - id
-  - id_usuario
   - cpf/cnpj
   - rg/ie (RG só não obrigatório para cliente)
-  - nome/razao social
+  - nome/razaoSocial
   - email (campo único)
   - id_telefone (telefone + respContato)
-  - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)
+  - id_classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)
   - id_endereço (pais, cep, estado, cidade, bairro, rua, numero, complemento, infoAdicionais)
-  - id_dadosBancarios (id_formaPagamento('PIX, transferencia, boleto'), codPIX, tipoPIX, id_codBanco('codBanco, nomeBanco'), agencia, conta)
+  - id_dadosBancarios{
+      - id_formaPagamento('PIX, transferencia, boleto')
+      - codPIX
+      - tipoPIX
+      - id_codBanco('codBanco, nomeBanco')
+      - agencia
+      - numeroConta)}
 - guarda_volume
-  - id_cliente
+  - id
+  - id_pessoas
   - dataEntrada
   - dataSaída
   - id_enderecoOrigem
-  - id_minutaEntrada
+  - id_minutaEntrada.numeroMinuta
   - id_enderecoDestino
-  - id_minutaSaida
+  - id_minutaSaida.numeroMinuta
   - valorNF
   - id_item{
     - descricaoItem (único)
@@ -105,7 +97,9 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - pesoCubadoItem
     - imagemAnexo}
 - tabela
+  - id
   - id_tipoTabela (fenix, terceiros)
+  - id_pessoa.endereço (para tabela de terceiros)
   - id_categoriaTabela (urgente, comum, exclusivo)
   - anexo
   - id_localOrigem (pais, cep, estado, cidade)
@@ -121,10 +115,11 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - prazoMaximo
     }
 - taxas adicionais
-  - descricao (Taxa interior, Seguro, Seguro Redespacho, Troca de gelo)
+  - id
+  - descricao (Taxa interior, Seguro, Seguro Redespacho, Troca de gelo, Area de risco)
   - id_moeda (real, dolar)
   - valorTaxa
-  - alcanceGeografico
+  - alcanceGeografico (pais, cep, estado, cidade)
   - condição/associado á: (valor NF, por km)
   - incluso (SEMPRE, QUANDO SELECIONADO)
 - cotação
@@ -152,7 +147,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - seguro
     - distanciaCapital
     - taxaInterior
-    - valorFinal}
+    - valorFrete}
 - minuta
   - id_clienteOrigem
   - id_clienteDestino
@@ -192,6 +187,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - numeroIdentificacao
     - custo
     - id_telefone
+    - data
     - anexo}
 - fatura
   - id_minuta
@@ -215,11 +211,41 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - numeroDocumento (nº CTE, nº NFS)
   - anexo (CTE / NFS)
 - despesas
+  - id_associadoMinuta (id_pessoa, custo)
+  - id_minuta
+  - vencimento
+  - id_statusFatura (aberto, pago, atrasado)
+  - id_pessoa (nome/razaoSocial, email, id_telefone, id_classificação, id_dadosBancarios)
+  - id_formaPagamento (boleto, cartão de credito, PIX)
+  - id_cobrança{
+    - juros
+    - multa}
+  - id_banco
+  - dataVencimento
+  - codigoBarrasBoleto
+  - valorAPagar
+  - descrição (numeroDocumento)
+  - anexo
 
 </details>
 
 <details>
 <summary><b> Rotas </b></summary>
+
+## **Status Codes**
+
+Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API.
+
+```javascript
+// 200 (OK) = requisição bem sucedida
+// 201 (Created) = requisição bem sucedida e algo foi criado
+// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
+// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
+// 401 (Unauthorized) = o usuário não está autenticado (logado)
+// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
+// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
+// 500 (Internal Server Error) = erro inesperado do servidor
+```
 
 #### `GET` `/categoria`
 
