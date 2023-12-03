@@ -58,7 +58,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - senha
   - id_perfilAcesso (Cliente, Parceiros, Operacional)
   - id_nivelAcesso (administrador, financeiro, comercial)
-- pessoas (clientes, agentes, usuários, funcionários, serviços)
+- pessoas
   - id
   - cpf/cnpj
   - rg/ie (RG só não obrigatório para cliente)
