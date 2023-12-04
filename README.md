@@ -213,22 +213,21 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - observacaoFatura
   - valorFatura
   - numeroDocumento (nº CTE, nº NFS)
-  - anexo (CTE / NFS)
+  - id_anexo (CTE / NFS)
 - despesas
   - id_associadoMinuta (id_pessoa {nome/razaoSocial, email, id_telefone, id_classificação, id_dadosBancarios}, custo, id_minuta)
-  - vencimento
   - id_statusPagamento (aberto, pago, atrasado)
   - id_formaPagamento (boleto, cartão de credito, PIX)
+  - id_banco
+  - id_anexo
   - incluirJuros (sim/não)
   - valorJuros
   - incluirMulta (sim/nao)
   - valorMulta
-  - id_banco
   - dataVencimento
   - codigoBarrasBoleto
   - valorAPagar
   - descrição (numeroIdentificação)
-  - anexo
 
 </details>
 
