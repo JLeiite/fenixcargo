@@ -188,7 +188,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - email (campo único)
     - id_telefone (telefone + respContato)
     - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)}
-  - numeroIdentificacao
+  - numeroRegistro
   - custo
   - data
   - id_anexo
