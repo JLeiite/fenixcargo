@@ -129,7 +129,6 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - id_localDestino (pais, cep, estado, cidade)
   - tipoDocumento (NF, declaracao, CTE)
   - valorProduto
-  - anexo
   - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
   - pesoTotal
   - id_item{
@@ -148,49 +147,53 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - distanciaCapital
     - taxaInterior
     - valorFrete}
+  - id_anexo
 - minuta
-  - id_clienteOrigem
-  - id_clienteDestino
-  - id_endereçoOrigem
-  - id_endereçoDestino
-  - tipoDocumento (NF, declaracao, CTE)
+  - id
   - produto
   - valorProduto
-  - anexo
-  - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
   - pesoTotal
+  - aprovadorFrete
+  - valorFrete
+  - codCotacao
+  - id_clienteOrigem
+  - id_clienteDestino
+  - id_clientePagador
+  - id_endereçoOrigem
+  - id_endereçoDestino
+  - id_tipoDocumento (NF, declaracao, CTE)
+  - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
   - id_item{
     - quantidadeItem
     - alturaItem
     - larguraItem
     - comprimentoItem
     - pesoCubadoItem}
-  - id_faturamento{
-    - clientePagador
-    - aprovadorFrete
-    - valorFrete
-    - codCotacao}
-  - id_atualizarMinuta {
-    - id_statusMinuta (aguardando coleta, saiu para coleta, coleta efetuada, aguardando liberação, em trânsito, saiu pra entrega, entrega efetuada)
-    - data
-    - cidade
-    - nomeResponsavel
-    - id_tipoDocumento (RG, CPF)
-    - numeroDocumento
-    - anexo}
-  - id_associadoMinuta {
-    - id_pessoa {
-      - nome/razao social
-      - email (campo único)
-      - id_telefone (telefone + respContato)
-      - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)}
-    - numeroIdentificacao
-    - custo
-    - id_telefone
-    - data
-    - anexo}
-- fatura
+  - id_anexo
+- AtualizarMinuta
+  - id
   - id_minuta
+  - id_statusMinuta (aguardando coleta, saiu para coleta, coleta efetuada, aguardando liberação, em trânsito, saiu pra entrega, entrega efetuada)
+  - data
+  - cidade
+  - nomeResponsavel
+  - id_tipoDocumento (RG, CPF)
+  - numeroDocumento
+  - id_anexo
+- AssociadoMinuta
+  - id
+  - id_minuta
+  - id_pessoa {
+    - nome/razao social
+    - email (campo único)
+    - id_telefone (telefone + respContato)
+    - classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)}
+  - numeroIdentificacao
+  - custo
+  - data
+  - id_anexo
+- fatura
+  - id_minutaFatura
   - id_statusFatura (aberto, pago, atrasado)
   - id_faturamento{
     - clientePagador
