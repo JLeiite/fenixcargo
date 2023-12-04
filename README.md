@@ -215,10 +215,9 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - numeroDocumento (nº CTE, nº NFS)
   - anexo (CTE / NFS)
 - despesas
-  - id_associadoMinuta (id_pessoa, custo, id_minuta)
+  - id_associadoMinuta (id_pessoa {nome/razaoSocial, email, id_telefone, id_classificação, id_dadosBancarios}, custo, id_minuta)
   - vencimento
   - id_statusPagamento (aberto, pago, atrasado)
-  - id_pessoa (nome/razaoSocial, email, id_telefone, id_classificação, id_dadosBancarios)
   - id_formaPagamento (boleto, cartão de credito, PIX)
   - incluirJuros (sim/não)
   - valorJuros
