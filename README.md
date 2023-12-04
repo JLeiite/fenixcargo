@@ -195,8 +195,8 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
 - fatura
   - id
   - id_minutaFatura (COUNT *)
-  - id_statusFatura (aberto, pago, atrasado)
-  - id_faturamento{
+  - id_statusPagamento (aberto, pago, atrasado)
+  - id_minuta{
     - clientePagador
     - aprovadorFrete
     - valorFrete
@@ -217,7 +217,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - id_associadoMinuta (id_pessoa, custo)
   - id_minuta
   - vencimento
-  - id_statusFatura (aberto, pago, atrasado)
+  - id_statusPagamento (aberto, pago, atrasado)
   - id_pessoa (nome/razaoSocial, email, id_telefone, id_classificação, id_dadosBancarios)
   - id_formaPagamento (boleto, cartão de credito, PIX)
   - id_cobrança{
