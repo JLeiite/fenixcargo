@@ -161,7 +161,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - id_clientePagador
   - id_endereçoOrigem
   - id_endereçoDestino
-  - id_tipoDocumento (NF, declaracao, CTE)
+  - id_tipoDeclaracao (NF, declaracao, CTE)
   - id_tipoEmbalagem (caixa papelão, isopor, sem embalagem)
   - id_item{
     - quantidadeItem
