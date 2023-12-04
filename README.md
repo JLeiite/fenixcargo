@@ -202,9 +202,10 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - valorFrete
     - codCotacao}
   - id_formaPagamento (boleto, cartão de credito, PIX)
-  - id_cobrança{
-    - juros
-    - multa}
+  - incluirJuros (sim/não)
+  - valorJuros
+  - incluirMulta (sim/nao)
+  - valorMulta
   - id_banco
   - dataVencimento
   - dataEmissao
