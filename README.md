@@ -50,31 +50,31 @@ O banco de dados `tms` será criado para manipulação dos dados presentes em to
 <summary><b>Banco de Dados</b></summary>
 <br>
 
-Criação de tabelas e colunas conforme abaixo em PostgreSQL:
+Criação de tabelas e colunas conforme abaixo em SQL:
 
-- usuarios
+- usuarios / USER
   - id
   - id_pessoas.email
   - senha
-  - id_perfilAcesso (Cliente, Parceiros, Operacional)
-  - id_nivelAcesso (administrador, financeiro, comercial)
-- pessoas
+  - id_perfilAcesso (´Cliente´, ´Parceiros´, ´Operacional´)
+  - id_nivelAcesso (´administrador´, ´financeiro´, ´comercial´)
+- pessoas / PERSON
   - id
   - cpf/cnpj
   - rg/ie (RG só não obrigatório para cliente)
   - nome/razaoSocial
   - email (campo único)
   - id_telefone (telefone + respContato)
-  - id_classificação (clientes, agentes/parceiros, usuários, funcionários, serviços, companhia, motorista)
+  - id_classificação (´clientes´, ´agentes/parceiros´, ´funcionários´, ´serviços´, ´companhia´, ´motorista´)
   - id_endereço (pais, cep, estado, cidade, bairro, rua, numero, complemento, infoAdicionais)
   - id_dadosBancarios{
-      - id_formaPagamento('PIX, transferencia, boleto')
+      - id_formaPagamento(´PIX´, ´transferencia´, ´boleto´)
       - codPIX
       - tipoPIX
       - id_codBanco('codBanco, nomeBanco')
       - agencia
       - numeroConta)}
-- guarda_volume
+- guarda_volume / STORAGE
   - id
   - id_pessoas
   - dataEntrada
@@ -96,7 +96,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - pesoTotalItem
     - pesoCubadoItem
     - imagemAnexo}
-- tabela
+- tabela / PRICELIST
   - id
   - id_tipoTabela (fenix, terceiros)
   - id_pessoa.endereço (para tabela de terceiros)
@@ -122,7 +122,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - alcanceGeografico (pais, cep, estado, cidade)
   - condição/associado á: (valor NF, por km)
   - incluso (SEMPRE, QUANDO SELECIONADO)
-- cotação
+- cotação / QUOTATION
   - id
   - id_clienteOrigem
   - id_clienteDestino
@@ -149,7 +149,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - taxaInterior
     - valorFrete}
   - id_anexo
-- minuta
+- minuta / INVOICE
   - id
   - produto
   - valorProduto
@@ -171,7 +171,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
     - comprimentoItem
     - pesoCubadoItem}
   - id_anexo
-- AtualizarMinuta
+- AtualizarMinuta / INVOICE_STATUS
   - id
   - id_minuta
   - id_statusMinuta (aguardando coleta, saiu para coleta, coleta efetuada, aguardando liberação, em trânsito, saiu pra entrega, entrega efetuada)
@@ -181,7 +181,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - id_tipoDocumento (RG, CPF)
   - numeroDocumento
   - id_anexo
-- AssociadoMinuta
+- AssociadoMinuta / INVOICE_ASSOCIATES
   - id
   - id_minuta
   - id_pessoa {
@@ -193,7 +193,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - custo
   - data
   - id_anexo
-- fatura
+- fatura / BILL
   - id
   - id_minutaFatura (COUNT *)
   - id_statusPagamento (aberto, pago, atrasado)
@@ -215,7 +215,7 @@ Criação de tabelas e colunas conforme abaixo em PostgreSQL:
   - valorFatura
   - numeroDocumento (nº CTE, nº NFS)
   - id_anexo (CTE / NFS)
-- despesas
+- despesas / EXPENSES
   - id
   - id_associadoMinuta (id_pessoa{se houver buscar daqui}, custo, id_minuta)
   - id_pessoa {
@@ -256,15 +256,17 @@ Abaixo, listamos os possíveis **_status codes_** esperados como resposta da API
 // 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
 // 500 (Internal Server Error) = erro inesperado do servidor
 ```
+As rotas abaixos devem ser chamadas quando o usuário quiser, respectivamente, LISTAR, ADICIONAR e EDITAR as tabelas:
 
-#### `GET` `/categoria`
-
-Essa é a rota que será chamada quando o usuário quiser listar todos os perfis cadastrados.
-
-## **Perfil de Acesso**
-
-- Cliente
-- Parceiros
-- Operacional
+#### `GET` + `POST` + `UPDATE` --> `/USER`
+#### `GET` + `POST` + `UPDATE` --> `/PERSON`
+#### `GET` + `POST` + `UPDATE` --> `/STORAGE`
+#### `GET` + `POST` + `UPDATE` --> `/PRICELIST`
+#### `GET` + `POST` + `UPDATE` --> `/QUOTATION`
+#### `GET` + `POST` + `UPDATE` --> `/INVOICE`
+#### `GET` + `POST` + `UPDATE` --> `/INVOICE_STATUS`
+#### `GET` + `POST` + `UPDATE` --> `/INVOICE_ASSOCIATES`
+#### `GET` + `POST` + `UPDATE` --> `/BILL`
+#### `GET` + `POST` + `UPDATE` --> `/EXPENSES`
 
 </details>
